@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BubblePreviewHandler : MonoBehaviour
+public class launcherBubblePreviewHandler : MonoBehaviour
 {
     
     public BubblePopGameMgr bubblePopGameMgr;
