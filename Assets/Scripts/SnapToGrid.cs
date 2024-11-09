@@ -13,24 +13,30 @@ public class SnapToGrid : MonoBehaviour
 
     private void Awake()
     {
-        gridRef = transform.parent.GetComponent<Grid>();
+        FindGrid();
     }
     private void Start()
     {
         if (gridRef)
-        {
             SnapToWorldGrid();
-        } 
     }
 
     public void SnapToWorldGrid()
     {
+        if (!gridRef)
+            FindGrid();
+
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
 
         cellPos = gridRef.WorldToCell(pos);
         cellCenter = gridRef.GetCellCenterWorld(cellPos);
-        
+
         transform.position = cellCenter;
         OnGridSnap?.Invoke();
+    }
+
+    private void FindGrid()
+    {
+        gridRef = transform.parent.GetComponent<Grid>();
     }
 }
