@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SidebarBubblePreviewHandler : MonoBehaviour
+public class BubblePreviewHandler : MonoBehaviour
 {
     public BubblePopGameMgr bubblePopGameMgr;
     [SerializeField] private Image currentBubbleImage;
@@ -11,8 +11,11 @@ public class SidebarBubblePreviewHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currentBubbleImage.color = bubblePopGameMgr.GetCurrentBubbleColor();
-        nextBubbleImage.color= bubblePopGameMgr.GetNextBubbleColor();
+        if (currentBubbleImage)
+            currentBubbleImage.color = bubblePopGameMgr.GetCurrentBubbleColor();
+
+        if (nextBubbleImage)
+            nextBubbleImage.color = bubblePopGameMgr.GetNextBubbleColor();
     }
 }
 
