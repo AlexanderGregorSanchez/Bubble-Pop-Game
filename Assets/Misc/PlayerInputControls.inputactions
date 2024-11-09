@@ -1,0 +1,76 @@
+{
+    "name": "PlayerInputControls",
+    "maps": [
+        {
+            "name": "Launcher",
+            "id": "9c5bf272-c868-4db5-a48f-73aa5ce85936",
+            "actions": [
+                {
+                    "name": "Tilt",
+                    "type": "Value",
+                    "id": "7f574629-bb7f-4d4e-a92d-ed528eb171a8",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "54c05a16-ff72-4cd7-be9c-23820ebf4269",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Left/Right",
+                    "id": "168a8401-8c9f-44be-916d-06c084af347f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tilt",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "490bdfec-8804-402d-959b-3d834f9183d9",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "537fec91-84ff-4433-957e-fe72a17c85bf",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "da9e3e31-c128-44ad-842e-eba90d635759",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

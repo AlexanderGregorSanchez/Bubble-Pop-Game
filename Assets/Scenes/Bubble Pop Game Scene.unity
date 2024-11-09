@@ -1416,6 +1416,7 @@ GameObject:
   - component: {fileID: 781566043}
   - component: {fileID: 781566045}
   - component: {fileID: 781566044}
+  - component: {fileID: 781566046}
   m_Layer: 5
   m_Name: Launcher
   m_TagString: Untagged
@@ -1483,6 +1484,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781566042}
   m_CullTransparentMesh: 1
+--- !u!114 &781566046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781566042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fedaccf1c0604a4bb44ed92c2d29bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiltSpeed: 30
+  maxTiltAngle: 60
+  launcherGunPivot: {fileID: 28145914}
+  LauncherFired:
+    m_PersistentCalls:
+      m_Calls: []
+  LauncherUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1081592446
 GameObject:
   m_ObjectHideFlags: 0
