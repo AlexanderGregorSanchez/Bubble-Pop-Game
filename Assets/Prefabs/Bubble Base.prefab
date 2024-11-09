@@ -90,7 +90,8 @@ GameObject:
   - component: {fileID: 23554443838574456}
   - component: {fileID: 463261787462320573}
   - component: {fileID: -2594148344595984356}
-  m_Layer: 5
+  - component: {fileID: 8745058994944341802}
+  m_Layer: 8
   m_Name: Bubble Base
   m_TagString: Bubble
   m_Icon: {fileID: 0}
@@ -221,3 +222,60 @@ MonoBehaviour:
   MovementStopped:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8745058994944341802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906137117856533334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9ef64a1db2d46498e41816c6f40e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnWallHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2594148344595984356}
+        m_TargetAssemblyTypeName: BubbleMovement, Assembly-CSharp
+        m_MethodName: Bounce
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRoofHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3906137117856533320}
+        m_TargetAssemblyTypeName: SnapToGrid, Assembly-CSharp
+        m_MethodName: SnapToWorldGrid
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnBallHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3906137117856533320}
+        m_TargetAssemblyTypeName: SnapToGrid, Assembly-CSharp
+        m_MethodName: SnapToWorldGrid
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

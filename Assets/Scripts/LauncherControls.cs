@@ -15,8 +15,10 @@ public class LauncherControls : MonoBehaviour
 
     [SerializeField] private GameObject launcherGunPivot;
 
-    public UnityEvent LauncherFired;
-    public UnityEvent LauncherUnlocked;
+    public UnityEvent OnLauncherFired;
+    public UnityEvent<bool> OnLauncherLockUpdated;
+
+    private bool canFire = true;
 
     private void Awake()
     {
@@ -62,8 +64,13 @@ public class LauncherControls : MonoBehaviour
     }
     private void OnFirePerformed(InputAction.CallbackContext value)
     {
-
-        LauncherFired?.Invoke();
+        if (!canFire) return;
+        OnLauncherFired?.Invoke();
     }
 
+    public void SetLauncherLockStatus(bool status)
+    {
+        canFire = !status;
+        OnLauncherLockUpdated?.Invoke(canFire);
+    }
 }

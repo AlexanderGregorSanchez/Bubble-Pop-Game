@@ -9,13 +9,32 @@ public class BubblePreviewHandler : MonoBehaviour
     [SerializeField] private Image currentBubbleImage;
     [SerializeField] private Image nextBubbleImage;
 
+    int alpha = 1;
+
     private void FixedUpdate()
     {
+        if (!bubblePopGameMgr) return; 
+
         if (currentBubbleImage)
-            currentBubbleImage.color = bubblePopGameMgr.GetCurrentBubbleColor();
+        {
+            Color c = bubblePopGameMgr.GetCurrentBubbleColor();
+            currentBubbleImage.color = new Color(c.r, c.g, c.b, alpha);
+        }
 
         if (nextBubbleImage)
+        {
             nextBubbleImage.color = bubblePopGameMgr.GetNextBubbleColor();
+        }
+    }
+
+
+    public void SetPreviewVisibility(bool visible)
+    {
+        Color c = currentBubbleImage.color;
+        if (visible)
+            alpha = 1;
+        else
+            alpha = 0;
     }
 }
 

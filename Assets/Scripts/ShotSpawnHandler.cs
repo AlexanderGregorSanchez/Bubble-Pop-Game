@@ -13,13 +13,14 @@ public class ShotSpawnHandler : MonoBehaviour
 
     public UnityEvent OnShotSpawned;
 
-    public void SpawnBall()
+    public void SpawnShot()
     {
-        GameObject spawnedBall = Instantiate(bubblePopGameMgr.GetCurrentBubblePrefab(), launchPoint.transform.position, Quaternion.identity, shotParent);
-        spawnedBall.transform.localScale = Vector3.one;
+        GameObject spawnedShot = Instantiate(bubblePopGameMgr.GetCurrentBubblePrefab(), launchPoint.transform.position, Quaternion.identity, transform.parent.transform);
+        spawnedShot.transform.localScale = Vector3.one;
 
-        spawnedBall.GetComponent<BubbleMovement>().StartMovement(launchPoint.transform.up);
-
+        spawnedShot.GetComponent<BubbleMovement>().StartMovement(launchPoint.transform.up);
+        
+        spawnedShot.transform.SetParent(shotParent);
         OnShotSpawned?.Invoke();
     }
 }
