@@ -19,7 +19,7 @@ public class ShotSpawnHandler : MonoBehaviour
         spawnedShot.transform.localScale = Vector3.one;
 
         spawnedShot.GetComponent<BubbleMovement>().StartMovement(launchPoint.transform.up);
-        
+        spawnedShot.GetComponent<ColoredBubble>().isBubbleShot = true;
         
         spawnedShot.transform.SetParent(shotParent);
         OnShotSpawned?.Invoke();

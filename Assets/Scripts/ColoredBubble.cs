@@ -13,6 +13,11 @@ public class ColoredBubble : MonoBehaviour
     private List<GameObject> matchingNeighbors = new List<GameObject>();
     private List<GameObject> nonMatchingNeighbors = new List<GameObject>();
 
+    public bool isBubbleShot = false;
+
+    public List<GameObject> colorGroup = new List<GameObject>();
+    [SerializeField] private int minGroupSize = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +46,52 @@ public class ColoredBubble : MonoBehaviour
             else
             {
                 print("Something fucked up and neighbor passed by all checks in: ColoredBubble -> SortNeighbors() in " + name + " GameObject");
+            }
+        }
+
+
+        if (isBubbleShot)
+        {
+            isBubbleShot = false;
+            FindBubbleGroup();
+        }
+    }
+    
+    public void FindBubbleGroup()
+    {
+        // Ensure the colorGroup is cleared before starting the process
+        colorGroup.Clear();
+        AddToColorGroup(this);
+
+        if (colorGroup.Count >= minGroupSize)
+        {
+            print("Group meets the minimum size requirement!");
+        }
+        else
+        {
+            print("Group does not meet the minimum size requirement.");
+        }
+    }
+
+    public void AddToColorGroup(ColoredBubble origin)
+    {
+        if (!origin.colorGroup.Contains(gameObject))
+        {
+            origin.colorGroup.Add(gameObject);
+        }
+
+        if (origin.colorGroup.Count >= minGroupSize)
+        {
+            print("Minimum group size reached");
+            return;
+        }
+
+        foreach (GameObject neighbor in matchingNeighbors)
+        {
+            ColoredBubble neighborBubble = neighbor.GetComponent<ColoredBubble>();
+            if (neighborBubble != null && neighborBubble.bubbleColor == bubbleColor && !origin.colorGroup.Contains(neighbor))
+            {
+                neighborBubble.AddToColorGroup(origin);
             }
         }
     }
