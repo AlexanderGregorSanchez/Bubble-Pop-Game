@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class SnapToGrid : MonoBehaviour
     private Vector3 cellCenter;
 
     public UnityEvent OnGridSnap;
+
+    public static Action OnSnapToGrid;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class SnapToGrid : MonoBehaviour
 
         transform.position = cellCenter;
         OnGridSnap?.Invoke();
+        OnSnapToGrid?.Invoke();
     }
 
     private void FindGrid()

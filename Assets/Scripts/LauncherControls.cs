@@ -32,6 +32,8 @@ public class LauncherControls : MonoBehaviour
         inputs.Launcher.Tilt.canceled += OnTiltCanceled;
 
         inputs.Launcher.Fire.performed += OnFirePerformed;
+
+        SnapToGrid.OnSnapToGrid += UnlockLauncher;
     }
     private void OnDisable()
     {
@@ -41,6 +43,8 @@ public class LauncherControls : MonoBehaviour
         inputs.Launcher.Tilt.canceled -= OnTiltCanceled;
 
         inputs.Launcher.Fire.performed -= OnFirePerformed;
+
+        SnapToGrid.OnSnapToGrid -= UnlockLauncher;
     }
 
     private void FixedUpdate()
@@ -66,6 +70,11 @@ public class LauncherControls : MonoBehaviour
     {
         if (!canFire) return;
         OnLauncherFired?.Invoke();
+    }
+
+    private void UnlockLauncher()
+    {
+        SetLauncherLockStatus(false);
     }
 
     public void SetLauncherLockStatus(bool status)

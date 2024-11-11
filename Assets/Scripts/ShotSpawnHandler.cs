@@ -20,6 +20,7 @@ public class ShotSpawnHandler : MonoBehaviour
 
         spawnedShot.GetComponent<BubbleMovement>().StartMovement(launchPoint.transform.up);
         
+        
         spawnedShot.transform.SetParent(shotParent);
         OnShotSpawned?.Invoke();
     }

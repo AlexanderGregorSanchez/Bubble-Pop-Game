@@ -98,6 +98,13 @@ public class BubblePopGameMgr : MonoBehaviour
         // Assign the updated list to possibleBubblePrefabs
         possibleBubblePrefabs = updatedPossibleBubblePrefabs;
     }
+    public void AdvanceBubbleIndex(bool status)
+    {
+        if (status) return;
+
+        currentBubbleIndex = nextBubbleIndex;
+        nextBubbleIndex = Random.Range(0, possibleBubblePrefabs.Count);
+    }
 
     public Color GetCurrentBubbleColor()
     {
