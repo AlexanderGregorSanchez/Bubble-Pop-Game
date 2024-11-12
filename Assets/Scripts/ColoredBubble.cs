@@ -66,6 +66,7 @@ public class ColoredBubble : MonoBehaviour
         if (colorGroup.Count >= minGroupSize)
         {
             print("Group meets the minimum size requirement!");
+            BurstBubbleGroup();
         }
         else
         {
@@ -80,12 +81,6 @@ public class ColoredBubble : MonoBehaviour
             origin.colorGroup.Add(gameObject);
         }
 
-        if (origin.colorGroup.Count >= minGroupSize)
-        {
-            print("Minimum group size reached");
-            return;
-        }
-
         foreach (GameObject neighbor in matchingNeighbors)
         {
             ColoredBubble neighborBubble = neighbor.GetComponent<ColoredBubble>();
@@ -94,5 +89,24 @@ public class ColoredBubble : MonoBehaviour
                 neighborBubble.AddToColorGroup(origin);
             }
         }
+    }
+
+    public void BurstBubbleGroup()
+    {
+        foreach (GameObject members in colorGroup)
+        {
+            members.GetComponent<ColoredBubble>().DestroyBubble();
+        }
+    }
+
+    public void DropBubble()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DestroyBubble()
+    {
+        print($"<color=green>{name}</color> has been <color=red>DESTROYED</color>");
+        gameObject.SetActive(false);
     }
 }

@@ -86,15 +86,16 @@ public class BubblePopGameMgr : MonoBehaviour
         List<GameObject> updatedPossibleBubblePrefabs = new List<GameObject>();
         // Add GameObject prefabs to the updated list based on activeColors
         foreach (BubbleColors color in activeColors)
-        { 
-            if (bubblePrefabs.ContainsKey(color)) 
-            { 
-                GameObject prefab = bubblePrefabs[color]; 
-                if (!updatedPossibleBubblePrefabs.Contains(prefab)) 
-                { updatedPossibleBubblePrefabs.Add(prefab); 
+        {
+            if (bubblePrefabs.ContainsKey(color))
+            {
+                GameObject prefab = bubblePrefabs[color];
+                if (!updatedPossibleBubblePrefabs.Contains(prefab))
+                {
+                    updatedPossibleBubblePrefabs.Add(prefab);
                 }
             }
-        } 
+        }
         // Assign the updated list to possibleBubblePrefabs
         possibleBubblePrefabs = updatedPossibleBubblePrefabs;
     }
@@ -108,11 +109,17 @@ public class BubblePopGameMgr : MonoBehaviour
 
     public Color GetCurrentBubbleColor()
     {
-        return possibleBubblePrefabs[currentBubbleIndex].GetComponentInChildren<Image>().color;
+        if (possibleBubblePrefabs.Count > 0)
+            return possibleBubblePrefabs[currentBubbleIndex].GetComponentInChildren<Image>().color;
+
+        return Color.clear;
     }
     public Color GetNextBubbleColor()
     {
-        return possibleBubblePrefabs[nextBubbleIndex].GetComponentInChildren<Image>().color;
+        if (possibleBubblePrefabs.Count > 0)
+            return possibleBubblePrefabs[nextBubbleIndex].GetComponentInChildren<Image>().color;
+
+        return Color.clear;
     }
     public GameObject GetCurrentBubblePrefab()
     {
