@@ -9,6 +9,8 @@ public class RoofCheckHandler : MonoBehaviour
     public bool isTouchingRoof = false;
     public bool isConnectedToRoof = false;
 
+    public List<GameObject> chainToRoof = new List<GameObject>();
+
     private void OnEnable()
     {
         ColoredBubble.OnBubblePopped += NeighborPop;
@@ -20,12 +22,14 @@ public class RoofCheckHandler : MonoBehaviour
 
     public void CheckForImmediateRoof()
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + Vector3.up * 5, Vector3.up, 20);
+        RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, transform.position + Vector3.up * 10);
+        //Debug.DrawLine(transform.position, transform.position + Vector3.up * 10, Color.yellow, 500);
+        //print($"<b><color=green>{name}'s</color></b> roof check found {hits.Length} hits");
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.transform.CompareTag("Roof"))
             {
-                print($"<b><color=green>{name}</color></b> is touching the roof");
+                //print($"<b><color=green>{name}</color></b> is touching the roof");
                 isTouchingRoof = true;
                 isConnectedToRoof = true;
                 break;
@@ -48,12 +52,63 @@ public class RoofCheckHandler : MonoBehaviour
     {
         if (isTouchingRoof) return;
 
-        print($"<color=green>{name}</color> is finding roof");
+        isConnectedToRoof = false;
+
+        // Ensure the roofGroup is cleared before starting the process
+        chainToRoof.Clear();
+        SearchNeighborsForRoof(this);
+        
+        if (isConnectedToRoof)
+        {
+            isConnectedToRoof = false;
+            //print($"<b><color=green>{name}'s</color></b> is <color=yellow>CONNECTED</color> to Roof");
+            DoSomethingIfRoofFound();
+        }
+        else
+        {
+            isConnectedToRoof = false;
+            //print($"<b><color=green>{name}'s</color></b> is <color=red>NOT CONNECTED</color> to Roof");
+            DoSomethingIfRoofNotFound();
+
+            gameObject.SetActive(false);
+        }
 
     }
 
-    public void AddToChain(RoofCheckHandler roofCheck)
+    public void SearchNeighborsForRoof(RoofCheckHandler origin)
     {
+        if (!origin.GetComponent<RoofCheckHandler>().chainToRoof.Contains(gameObject))
+        {
+            origin.GetComponent<RoofCheckHandler>().chainToRoof.Add(gameObject);
+        }
 
+        if (isTouchingRoof)
+        {
+            //print($"<b><color=green>{name}'s</color></b> is <color=yellow>TOUCHING</color> to Roof");
+            origin.isConnectedToRoof = true;
+            return;
+        }
+
+        foreach (GameObject neighbor in GetComponent<ColoredBubble>().allNeighbors)
+        {
+            RoofCheckHandler neighborChecker = neighbor.GetComponent<RoofCheckHandler>();
+            if (!origin.GetComponent<RoofCheckHandler>().chainToRoof.Contains(neighbor))
+            {
+                neighborChecker.SearchNeighborsForRoof(origin);
+            }
+        }
     }
+
+    public void DoSomethingIfRoofFound()
+    {
+        // Action to perform if the roof is found
+    }
+
+    public void DoSomethingIfRoofNotFound()
+    {
+        // Action to perform if the roof is not found
+
+        GetComponent<ColoredBubble>().DropBubble();
+    }
+
 }

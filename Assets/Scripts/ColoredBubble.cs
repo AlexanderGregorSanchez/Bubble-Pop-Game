@@ -27,7 +27,7 @@ public class ColoredBubble : MonoBehaviour
     private void DestroyBubble()
     {
         OnBubblePopped?.Invoke(gameObject);
-        print($"<color=green>{name}</color> has been <color=red>DESTROYED</color>");
+        //print($"<color=green>{name}</color> has been <color=red>DESTROYED</color>");
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
@@ -71,12 +71,12 @@ public class ColoredBubble : MonoBehaviour
 
         if (colorGroup.Count >= minGroupSize)
         {
-            print("Group meets the minimum size requirement!");
+            //print("Group meets the minimum size requirement!");
             BurstBubbleGroup();
         }
         else
         {
-            print("Group does not meet the minimum size requirement.");
+            //print("Group does not meet the minimum size requirement.");
         }
     }
 
@@ -107,7 +107,7 @@ public class ColoredBubble : MonoBehaviour
 
     public void DropBubble()
     {
-        throw new NotImplementedException();
+        DestroyBubble();
     }
 
 }
