@@ -27,6 +27,7 @@ public class ColoredBubble : MonoBehaviour
     private void DestroyBubble()
     {
         OnBubblePopped?.Invoke(gameObject);
+        print($"<color=green>{name}</color> has been <color=red>DESTROYED</color>");
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
@@ -109,9 +110,4 @@ public class ColoredBubble : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    public void DestroyBubble()
-    {
-        print($"<color=green>{name}</color> has been <color=red>DESTROYED</color>");
-        gameObject.SetActive(false);
-    }
 }

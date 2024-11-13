@@ -98,26 +98,62 @@ public class BubblePopGameMgr : MonoBehaviour
         }
         // Assign the updated list to possibleBubblePrefabs
         possibleBubblePrefabs = updatedPossibleBubblePrefabs;
+
+        CheckBubbleIndex();
     }
+
+    private void CheckBubbleIndex()
+    {
+        if (currentBubbleIndex >= possibleBubblePrefabs.Count)
+        {
+            if (nextBubbleIndex < possibleBubblePrefabs.Count)
+            {
+                AdvanceBubbleIndex(false);
+            }
+            else
+            {
+                currentBubbleIndex = GetRandomPossibleBubblePrefabsIndex();
+            }
+        }
+
+        if (nextBubbleIndex >= possibleBubblePrefabs.Count)
+        {
+            nextBubbleIndex = GetRandomPossibleBubblePrefabsIndex();
+        }
+    }
+
+    private int GetRandomPossibleBubblePrefabsIndex()
+    {
+        return Random.Range(0, possibleBubblePrefabs.Count);
+    }
+
     public void AdvanceBubbleIndex(bool status)
     {
         if (status) return;
-
         currentBubbleIndex = nextBubbleIndex;
-        nextBubbleIndex = Random.Range(0, possibleBubblePrefabs.Count);
+        nextBubbleIndex = GetRandomPossibleBubblePrefabsIndex();
+        //print($"<color=yellow>Current Bubble Index:</color> {currentBubbleIndex} \n <color=yellow>Next Bubble Index:</color> {nextBubbleIndex}");
     }
+
 
     public Color GetCurrentBubbleColor()
     {
+        //print($"<color=yellow>Current Bubble Index:</color> {currentBubbleIndex} <color=purple> Possible Bubble Prefabs Count:</color> {possibleBubblePrefabs.Count}");
         if (possibleBubblePrefabs.Count > 0)
+        {
             return possibleBubblePrefabs[currentBubbleIndex].GetComponentInChildren<Image>().color;
+        }
+
 
         return Color.clear;
     }
     public Color GetNextBubbleColor()
     {
+        //print($"<color=yellow>Next Bubble Index:</color> {nextBubbleIndex} <color=purple> Possible Bubble Prefabs Count:</color> {possibleBubblePrefabs.Count}");
         if (possibleBubblePrefabs.Count > 0)
+        {
             return possibleBubblePrefabs[nextBubbleIndex].GetComponentInChildren<Image>().color;
+        }
 
         return Color.clear;
     }
