@@ -10,6 +10,7 @@ public class ColoredBubble : MonoBehaviour
     public static Action<GameObject> OnBubbleSpawned;
     public static Action<GameObject> OnBubblePopped;
 
+    public List<GameObject> allNeighbors;
     private List<GameObject> matchingNeighbors = new List<GameObject>();
     private List<GameObject> nonMatchingNeighbors = new List<GameObject>();
 
@@ -23,13 +24,17 @@ public class ColoredBubble : MonoBehaviour
     {
         OnBubbleSpawned?.Invoke(gameObject);
     }
-    private void OnDisable()
+    private void DestroyBubble()
     {
         OnBubblePopped?.Invoke(gameObject);
+        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     public void SortNeighbors(List<GameObject> neighbors)
     {
+        allNeighbors = new List<GameObject>(neighbors);
+
         foreach (GameObject neighbor in neighbors)
         {
             ColoredBubble bubble = neighbor.GetComponent<ColoredBubble>();
@@ -66,6 +71,12 @@ public class ColoredBubble : MonoBehaviour
         if (colorGroup.Count >= minGroupSize)
         {
             print("Group meets the minimum size requirement!");
+
+            foreach(GameObject neighbor in colorGroup)
+            {
+                //gameObject.SetActive(false);
+                DestroyBubble();
+            }
         }
         else
         {
@@ -83,7 +94,7 @@ public class ColoredBubble : MonoBehaviour
         if (origin.colorGroup.Count >= minGroupSize)
         {
             print("Minimum group size reached");
-            return;
+            //return;
         }
 
         foreach (GameObject neighbor in matchingNeighbors)
