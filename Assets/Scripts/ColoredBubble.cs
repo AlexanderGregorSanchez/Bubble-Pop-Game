@@ -19,6 +19,8 @@ public class ColoredBubble : MonoBehaviour
     public List<GameObject> colorGroup = new List<GameObject>();
     [SerializeField] private int minGroupSize = 3;
 
+    public bool isDropped { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -115,6 +117,7 @@ public class ColoredBubble : MonoBehaviour
 
     public void DropBubble()
     {
+        isDropped = true;
         DestroyBubble();
     }
 

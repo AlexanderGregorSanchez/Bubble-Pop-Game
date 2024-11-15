@@ -1714,6 +1714,7 @@ GameObject:
   - component: {fileID: 904030643}
   - component: {fileID: 904030642}
   - component: {fileID: 904030641}
+  - component: {fileID: 904030645}
   m_Layer: 5
   m_Name: ~Game Manager
   m_TagString: Untagged
@@ -1749,6 +1750,23 @@ MonoBehaviour:
       Value: {fileID: 3232799432627715507, guid: 2d86f0dd39025a145a0e10938fdadf86, type: 3}
   possibleBubblePrefabs: []
   currentBubbleIndex: 0
+  OnScoreUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 904030645}
+        m_TargetAssemblyTypeName: ScoreHandler, Assembly-CSharp
+        m_MethodName: UpdateScoreText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  pointsPerBubble: 100
+  dropMultiplier: 1.5
 --- !u!114 &904030642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,6 +1825,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &904030645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904030640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1cc5e20f870cd4eaed3d8c28a8dc4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 481387236}
 --- !u!224 &915238709 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3232799432627715500, guid: 073d739bd46b1044bac7239419d8bee5, type: 3}

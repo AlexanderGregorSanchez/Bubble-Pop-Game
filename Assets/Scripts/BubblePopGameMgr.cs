@@ -2,6 +2,7 @@ using AYellowpaper.SerializedCollections;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public enum BubbleColors
@@ -24,15 +25,24 @@ public class BubblePopGameMgr : MonoBehaviour
     public int currentBubbleIndex = 0;
     int nextBubbleIndex = 0;
 
+    int currentScore = 0;
+
+    public UnityEvent<int> OnScoreUpdated;
+    [SerializeField] private int pointsPerBubble = 100;
+    [SerializeField] private float dropMultiplier = 1.5f;
+
+
     private void OnEnable()
     {
         ColoredBubble.OnBubbleSpawned += OnBubbleSpawn;
         ColoredBubble.OnBubblePopped += OnBubblePopped;
+        ColoredBubble.OnBubblePopped += UpdateScore;
     }
     private void OnDisable()
     {
         ColoredBubble.OnBubbleSpawned -= OnBubbleSpawn;
         ColoredBubble.OnBubblePopped -= OnBubblePopped;
+        ColoredBubble.OnBubblePopped -= UpdateScore;
     }
 
     private void OnBubbleSpawn(GameObject obj)
@@ -51,6 +61,19 @@ public class BubblePopGameMgr : MonoBehaviour
             activeBubbles.Remove(obj);
             UpdateActiveColors();
         }
+    }
+
+    private void UpdateScore(GameObject obj)
+    {
+        float pointsEarned = pointsPerBubble;
+        if (obj.GetComponent<ColoredBubble>().isDropped)
+        {
+            pointsEarned *= dropMultiplier;
+        }
+
+        currentScore += (int)pointsEarned;
+
+        OnScoreUpdated?.Invoke(currentScore);
     }
 
     private void UpdateActiveColors()
@@ -134,7 +157,6 @@ public class BubblePopGameMgr : MonoBehaviour
         nextBubbleIndex = GetRandomPossibleBubblePrefabsIndex();
         //print($"<color=yellow>Current Bubble Index:</color> {currentBubbleIndex} \n <color=yellow>Next Bubble Index:</color> {nextBubbleIndex}");
     }
-
 
     public Color GetCurrentBubbleColor()
     {
