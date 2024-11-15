@@ -34,6 +34,10 @@ public class ColoredBubble : MonoBehaviour
 
     public void SortNeighbors(List<GameObject> neighbors)
     {
+        allNeighbors.Clear();
+        matchingNeighbors.Clear();
+        nonMatchingNeighbors.Clear();
+
         allNeighbors = new List<GameObject>(neighbors);
 
         foreach (GameObject neighbor in neighbors)

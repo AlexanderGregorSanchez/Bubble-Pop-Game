@@ -9,7 +9,7 @@ public class RoofCheckHandler : MonoBehaviour
     public bool isTouchingRoof = false;
     public bool isConnectedToRoof = false;
 
-    public List<GameObject> chainToRoof = new List<GameObject>();
+    public List<GameObject> bubblesVisited = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -55,7 +55,7 @@ public class RoofCheckHandler : MonoBehaviour
         isConnectedToRoof = false;
 
         // Ensure the roofGroup is cleared before starting the process
-        chainToRoof.Clear();
+        bubblesVisited.Clear();
         SearchNeighborsForRoof(this);
         
         if (isConnectedToRoof)
@@ -77,9 +77,9 @@ public class RoofCheckHandler : MonoBehaviour
 
     public void SearchNeighborsForRoof(RoofCheckHandler origin)
     {
-        if (!origin.GetComponent<RoofCheckHandler>().chainToRoof.Contains(gameObject))
+        if (!origin.GetComponent<RoofCheckHandler>().bubblesVisited.Contains(gameObject))
         {
-            origin.GetComponent<RoofCheckHandler>().chainToRoof.Add(gameObject);
+            origin.GetComponent<RoofCheckHandler>().bubblesVisited.Add(gameObject);
         }
 
         if (isTouchingRoof)
@@ -92,7 +92,7 @@ public class RoofCheckHandler : MonoBehaviour
         foreach (GameObject neighbor in GetComponent<ColoredBubble>().allNeighbors)
         {
             RoofCheckHandler neighborChecker = neighbor.GetComponent<RoofCheckHandler>();
-            if (!origin.GetComponent<RoofCheckHandler>().chainToRoof.Contains(neighbor))
+            if (!origin.GetComponent<RoofCheckHandler>().bubblesVisited.Contains(neighbor))
             {
                 neighborChecker.SearchNeighborsForRoof(origin);
             }

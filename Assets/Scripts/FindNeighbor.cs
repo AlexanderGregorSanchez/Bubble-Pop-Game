@@ -10,6 +10,15 @@ public class FindNeighbor : MonoBehaviour
 
     public UnityEvent<List<GameObject>> OnAllNeighborsFound;
 
+    private void OnEnable()
+    {
+        SnapToGrid.OnSnapToGrid += FindImmediateNeighbors;
+    }
+    private void OnDisable()
+    {
+        SnapToGrid.OnSnapToGrid -= FindImmediateNeighbors;
+    }
+
     public void FindImmediateNeighbors()
     {
         StartCoroutine(CheckNeighbors());
