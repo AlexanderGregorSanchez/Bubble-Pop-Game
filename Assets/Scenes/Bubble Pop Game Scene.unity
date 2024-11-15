@@ -811,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3232799432627715500, guid: 5287f3b864ebe3044adaad35f788db78, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -104.1
+      value: -167
       objectReference: {fileID: 0}
     - target: {fileID: 3232799432627715500, guid: 5287f3b864ebe3044adaad35f788db78, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3831,6 +3831,7 @@ GameObject:
   - component: {fileID: 1973182995}
   - component: {fileID: 1973182994}
   - component: {fileID: 1973182996}
+  - component: {fileID: 1973182997}
   m_Layer: 7
   m_Name: Roof Panel
   m_TagString: Roof
@@ -3923,6 +3924,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 524.70026, y: 10.9548645}
   m_EdgeRadius: 0
+--- !u!114 &1973182997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973182992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a6f37aad4068f4294a63e8e1fd1354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialDropDelay: 20
+  dropInterval: 10
+  dropDistance: 25
+  dropSpeed: 50
 --- !u!1001 &1979348519
 PrefabInstance:
   m_ObjectHideFlags: 0
