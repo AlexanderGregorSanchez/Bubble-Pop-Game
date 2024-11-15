@@ -10,19 +10,16 @@ public class FindNeighbor : MonoBehaviour
 
     public UnityEvent<List<GameObject>> OnAllNeighborsFound;
 
-    private void OnEnable()
-    {
-        SnapToGrid.OnSnapToGrid += FindImmediateNeighbors;
-    }
-    private void OnDisable()
-    {
-        SnapToGrid.OnSnapToGrid -= FindImmediateNeighbors;
-    }
-
     public void FindImmediateNeighbors()
     {
         StartCoroutine(CheckNeighbors());
     }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
     IEnumerator CheckNeighbors()
     {
         List<Vector3> directions = new List<Vector3>
@@ -34,12 +31,13 @@ public class FindNeighbor : MonoBehaviour
             -Vector3.up + -(Vector3.right / 2),
             -Vector3.right
         };
+
+        List<GameObject> tempNeighbors = new List<GameObject>(immediateNeighbors);
+
         immediateNeighbors.Clear();
 
-        // Loop until no new balls found for 3 consecutive loops
         for (int i = 0; i < 4; i++)
         {
-            // Linecast in all directions on grid
             foreach (var entry in directions)
             {
                 RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position + entry * 5, transform.position + entry * 10);
@@ -47,27 +45,40 @@ public class FindNeighbor : MonoBehaviour
 
                 foreach (RaycastHit2D hit in hits)
                 {
-                    // Ignore all hits with things further than immediate adjacent grid spots
                     if (Vector2.Distance(transform.position, hit.transform.position) > 20)
                     {
                         continue;
                     }
-                    // Check hit object is a ball, is not self, and is not already recorded
                     else if (hit.transform.gameObject != gameObject
                         && hit.transform.CompareTag("Bubble")
                         && !immediateNeighbors.Contains(hit.transform.gameObject))
                     {
                         GameObject neighbor = hit.transform.gameObject;
                         Debug.DrawLine(transform.position, neighbor.transform.position, Color.magenta, 500);
-                        immediateNeighbors.Add(neighbor); // Record ball
+                        immediateNeighbors.Add(neighbor);
 
-                        i = 0;// Reset loop iterator
+                        i = 0;
 
-                        break;// Go to next direction linecast
+                        break;
                     }
                 }
             }
             yield return new WaitForSeconds(0.01f);
+        }
+
+        if (immediateNeighbors.Count > tempNeighbors.Count)
+        {
+            foreach(GameObject neighbor in immediateNeighbors)
+            {
+                if (neighbor == null) 
+                { 
+                    continue; 
+                }
+                else if (!tempNeighbors.Contains(neighbor) )
+                {
+                    neighbor.GetComponent<FindNeighbor>().FindImmediateNeighbors();
+                }
+            }
         }
 
         OnAllNeighborsFound?.Invoke(immediateNeighbors);

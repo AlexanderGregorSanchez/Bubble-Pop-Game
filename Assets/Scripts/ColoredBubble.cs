@@ -42,6 +42,10 @@ public class ColoredBubble : MonoBehaviour
 
         foreach (GameObject neighbor in neighbors)
         {
+            if (neighbor == null)
+            {
+                continue;
+            }
             ColoredBubble bubble = neighbor.GetComponent<ColoredBubble>();
             if (bubble.bubbleColor == bubbleColor
                 && !matchingNeighbors.Contains(neighbor))
