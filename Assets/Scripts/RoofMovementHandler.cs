@@ -45,12 +45,9 @@ public class RoofMovementHandler : MonoBehaviour
 
     IEnumerator DropRoofOverTime()
     {
-        print("DROPPING");
         yield return new WaitForSeconds(initialDropDelay);
         while (true)
         {
-            print("MOVING");
-            
             targetDropPos = new Vector3(transform.position.x, transform.position.y - dropDistance, transform.position.z);
 
             StartCoroutine(MoveRoof(targetDropPos));

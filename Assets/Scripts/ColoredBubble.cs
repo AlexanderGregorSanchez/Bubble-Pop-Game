@@ -21,11 +21,11 @@ public class ColoredBubble : MonoBehaviour
 
     public bool isDropped { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         OnBubbleSpawned?.Invoke(gameObject);
     }
+
     private void DestroyBubble()
     {
         OnBubblePopped?.Invoke(gameObject);

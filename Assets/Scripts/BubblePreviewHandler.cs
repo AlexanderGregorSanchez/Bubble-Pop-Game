@@ -11,30 +11,35 @@ public class BubblePreviewHandler : MonoBehaviour
 
     int alpha = 1;
 
-    private void FixedUpdate()
+    private void FixedUpdate() 
     {
-        if (!bubblePopGameMgr) return; 
+        if (bubblePopGameMgr == null) return;
 
-        if (currentBubbleImage)
-        {
-            Color c = bubblePopGameMgr.GetCurrentBubbleColor();
-            currentBubbleImage.color = new Color(c.r, c.g, c.b, alpha);
-        }
-
-        if (nextBubbleImage)
-        {
-            nextBubbleImage.color = bubblePopGameMgr.GetNextBubbleColor();
-        }
+        UpdateCurrentBubbleImage();
+        UpdateNextBubbleImage(); 
     }
+    private void UpdateCurrentBubbleImage() 
+    { 
+        if (currentBubbleImage == null) return;
 
+        Color color = bubblePopGameMgr.GetCurrentBubbleColor();
+        currentBubbleImage.color = (color == Color.clear) ? color : new Color(color.r, color.g, color.b, alpha); 
+    }
+    private void UpdateNextBubbleImage() 
+    { 
+        if (nextBubbleImage == null) return;
+
+        nextBubbleImage.color = bubblePopGameMgr.GetNextBubbleColor(); 
+    }
 
     public void SetPreviewVisibility(bool visible)
     {
-        Color c = currentBubbleImage.color;
-        if (visible)
-            alpha = 1;
-        else
-            alpha = 0;
+        alpha = visible ? 1 : 0;
+        if (currentBubbleImage != null)
+        {
+            Color c = currentBubbleImage.color;
+            currentBubbleImage.color = new Color(c.r, c.g, c.b, alpha);
+        }
     }
 }
 
