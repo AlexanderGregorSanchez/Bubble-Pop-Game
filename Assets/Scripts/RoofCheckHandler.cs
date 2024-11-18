@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -30,6 +31,7 @@ public class RoofCheckHandler : MonoBehaviour
             if (hit.transform.CompareTag("Roof"))
             {
                 //print($"<b><color=green>{name}</color></b> is touching the roof");
+                Debug.DrawLine(transform.position, hit.point, Color.yellow, 500);
                 isTouchingRoof = true;
                 isConnectedToRoof = true;
                 break;
