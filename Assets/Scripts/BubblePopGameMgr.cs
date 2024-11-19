@@ -169,6 +169,11 @@ public class BubblePopGameMgr : MonoBehaviour
         print("<color=Color.yellow><b>GAME IS COMPLETE</b></color>");
     }
 
+    public void LevelFailed()
+    {
+        print("<color=Color.red><b>GAME OVER</b></color>");
+    }
+
     public Color GetCurrentBubbleColor()
     {
         //print($"<color=yellow>Current Bubble Index:</color> {currentBubbleIndex} <color=purple> Possible Bubble Prefabs Count:</color> {possibleBubblePrefabs.Count}");
