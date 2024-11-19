@@ -16,11 +16,6 @@ public class RoofMovementHandler : MonoBehaviour
     public float dropSpeed = 50.0f;
 
     private Vector2 targetDropPos;
-    private Vector2 targetRoundPos;
-
-    public GameObject[] roundRoof;
-    [SerializeField] private int roundCounter = 1;
-    private int roofIndex = 0;
 
     private void Awake()
     {
@@ -29,13 +24,7 @@ public class RoofMovementHandler : MonoBehaviour
 
     private void Start()
     {
-        targetDropPos = roundRoof[roofIndex].transform.position;
         StartRoofDrop();
-    }
-
-    public void GoToNextRound()
-    {
-
     }
 
     public void ResetRoof()

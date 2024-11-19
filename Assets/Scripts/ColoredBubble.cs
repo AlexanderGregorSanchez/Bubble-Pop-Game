@@ -21,7 +21,7 @@ public class ColoredBubble : MonoBehaviour
 
     public bool isDropped { get; private set; }
 
-    private void OnEnable()
+    private void Start()
     {
         OnBubbleSpawned?.Invoke(gameObject);
     }

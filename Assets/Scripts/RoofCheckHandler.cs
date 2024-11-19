@@ -93,8 +93,11 @@ public class RoofCheckHandler : MonoBehaviour
 
         foreach (GameObject neighbor in GetComponent<ColoredBubble>().allNeighbors)
         {
+            if (neighbor == null) continue;
+
             RoofCheckHandler neighborChecker = neighbor.GetComponent<RoofCheckHandler>();
-            if (!origin.GetComponent<RoofCheckHandler>().bubblesVisited.Contains(neighbor))
+            if (!origin.GetComponent<RoofCheckHandler>().bubblesVisited.Contains(neighbor)
+                && neighbor != null)
             {
                 neighborChecker.SearchNeighborsForRoof(origin);
             }

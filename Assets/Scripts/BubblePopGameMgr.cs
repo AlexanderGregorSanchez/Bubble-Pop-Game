@@ -31,6 +31,7 @@ public class BubblePopGameMgr : MonoBehaviour
     [SerializeField] private int pointsPerBubble = 100;
     [SerializeField] private float dropMultiplier = 1.5f;
 
+    public UnityEvent OnRoundComplete;
 
     private void OnEnable()
     {
@@ -60,6 +61,11 @@ public class BubblePopGameMgr : MonoBehaviour
         {
             activeBubbles.Remove(obj);
             UpdateActiveColors();
+        }
+
+        if (activeBubbles.Count <= 0)
+        {
+            OnRoundComplete?.Invoke();
         }
     }
 
@@ -156,6 +162,11 @@ public class BubblePopGameMgr : MonoBehaviour
         currentBubbleIndex = nextBubbleIndex;
         nextBubbleIndex = GetRandomPossibleBubblePrefabsIndex();
         //print($"<color=yellow>Current Bubble Index:</color> {currentBubbleIndex} \n <color=yellow>Next Bubble Index:</color> {nextBubbleIndex}");
+    }
+
+    public void LevelCompleted()
+    {
+        print("<color=Color.yellow><b>GAME IS COMPLETE</b></color>");
     }
 
     public Color GetCurrentBubbleColor()
