@@ -121,4 +121,8 @@ public class ColoredBubble : MonoBehaviour
         DestroyBubble();
     }
 
+    public void SetBubbleParent(GameObject newParent)
+    {
+        transform.SetParent(newParent.transform);
+    }
 }

@@ -35,6 +35,7 @@ public class SnapToGrid : MonoBehaviour
         cellCenter = gridRef.GetCellCenterWorld(cellPos);
 
         transform.position = cellCenter;
+
         OnGridSnap?.Invoke();
         OnSnapToGrid?.Invoke();
     }
