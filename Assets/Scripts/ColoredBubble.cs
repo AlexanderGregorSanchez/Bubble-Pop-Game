@@ -120,9 +120,4 @@ public class ColoredBubble : MonoBehaviour
         isDropped = true;
         DestroyBubble();
     }
-
-    public void SetBubbleParent(GameObject newParent)
-    {
-        transform.SetParent(newParent.transform);
-    }
 }

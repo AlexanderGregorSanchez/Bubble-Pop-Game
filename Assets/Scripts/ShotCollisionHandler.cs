@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class ShotCollisionHandler : MonoBehaviour
 {
     public UnityEvent OnWallHit;
-    public UnityEvent<GameObject> OnRoofHit;
-    public UnityEvent<GameObject> OnBallHit;
+    public UnityEvent OnRoofHit;
+    public UnityEvent OnBubbleHit;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
@@ -19,11 +19,11 @@ public class ShotCollisionHandler : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Roof"))
             {
-                OnRoofHit?.Invoke(collision.transform.parent.GetChild(1).gameObject);
+                OnRoofHit?.Invoke();
             }
             if (collision.gameObject.CompareTag("Bubble"))
             {
-                OnBallHit?.Invoke(collision.transform.parent.gameObject);
+                OnBubbleHit?.Invoke();
             }
         }
     }

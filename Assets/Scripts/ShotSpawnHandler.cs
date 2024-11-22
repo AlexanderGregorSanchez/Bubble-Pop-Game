@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class ShotSpawnHandler : MonoBehaviour
 {
     public RectTransform launchPoint;
-    public RectTransform shotParent;
+    private RectTransform shotParent;
 
     public BubblePopGameMgr bubblePopGameMgr;
 
@@ -23,5 +23,10 @@ public class ShotSpawnHandler : MonoBehaviour
         
         spawnedShot.transform.SetParent(shotParent);
         OnShotSpawned?.Invoke();
+    }
+
+    public void SetShotParent(RectTransform rectTransform)
+    {
+        shotParent = rectTransform;
     }
 }
