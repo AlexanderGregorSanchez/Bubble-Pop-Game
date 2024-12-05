@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class FindNeighbor : MonoBehaviour
 {
-
+    public List<RectTransform> directionalEndPoint = new List<RectTransform>();
     private List<GameObject> immediateNeighbors = new List<GameObject>();
 
     public UnityEvent<List<GameObject>> OnAllNeighborsFound;
@@ -22,34 +22,20 @@ public class FindNeighbor : MonoBehaviour
 
     IEnumerator CheckNeighbors()
     {
-        List<Vector3> directions = new List<Vector3>
-        {
-            Vector3.up + -(Vector3.right / 2),
-            Vector3.up + (Vector3.right / 2),
-            Vector3.right,
-            -Vector3.up + (Vector3.right / 2),
-            -Vector3.up + -(Vector3.right / 2),
-            -Vector3.right
-        };
-
         List<GameObject> tempNeighbors = new List<GameObject>(immediateNeighbors);
 
         immediateNeighbors.Clear();
 
         for (int i = 0; i < 4; i++)
         {
-            foreach (var entry in directions)
+            foreach (var entry in directionalEndPoint)
             {
-                RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position + entry * 5, transform.position + entry * 10);
-                //Debug.DrawLine(transform.position + entry * 5, transform.position + entry * 10, Color.yellow, 500);
+                RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, entry.position);
+                //Debug.DrawLine(transform.position, entry.position, Color.yellow, 500);
 
                 foreach (RaycastHit2D hit in hits)
                 {
-                    if (Vector2.Distance(transform.position, hit.transform.position) > 20)
-                    {
-                        continue;
-                    }
-                    else if (hit.transform.gameObject != gameObject
+                    if (hit.transform.gameObject != gameObject
                         && hit.transform.CompareTag("Bubble")
                         && !immediateNeighbors.Contains(hit.transform.gameObject))
                     {

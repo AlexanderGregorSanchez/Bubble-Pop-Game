@@ -7,6 +7,8 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class RoofCheckHandler : MonoBehaviour
 {
+    public RectTransform endPoint;
+
     public bool isTouchingRoof = false;
     public bool isConnectedToRoof = false;
 
@@ -23,7 +25,7 @@ public class RoofCheckHandler : MonoBehaviour
 
     public void CheckForImmediateRoof()
     {
-        RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, transform.position + Vector3.up * 10);
+        RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, endPoint.position);
         //Debug.DrawLine(transform.position, transform.position + Vector3.up * 10, Color.yellow, 500);
         //print($"<b><color=green>{name}'s</color></b> roof check found {hits.Length} hits");
         foreach (RaycastHit2D hit in hits)

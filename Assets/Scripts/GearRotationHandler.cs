@@ -15,6 +15,7 @@ public class GearRotationHandler : MonoBehaviour
     {
         OnRotationStart?.Invoke();
         speed = rotationVelocity;
+        StartCoroutine(RotateGear());
     }
 
     public void EndRotation()
@@ -25,19 +26,13 @@ public class GearRotationHandler : MonoBehaviour
         OnRotationEnd?.Invoke();
     }
 
-    private void FixedUpdate()
-    {
-
-        //transform.rotation += Vector3.forward * speed * Time.fixedDeltaTime;
-        transform.Rotate(0,0, speed * Time.fixedDeltaTime, Space.World);
-    }
     IEnumerator RotateGear()
     {
         while (speed != 0)
         {
             yield return new WaitForFixedUpdate();
             //transform.Rotate(Vector3.forward, speed * Time.fixedDeltaTime,);
-            transform.Rotate(0, 0, speed);
+            transform.Rotate(0, 0, speed * Time.fixedDeltaTime, Space.World);
         }
     }
 }
