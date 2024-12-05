@@ -13,7 +13,6 @@ public class BubbleMovement : MonoBehaviour
     public UnityEvent MovementStarted;
     public UnityEvent MovementStopped;
 
-    //public UnityEvent FallStarted;
     public void StartMovement(Vector3 launchDirection)
     {
         moveDirection = launchDirection;
@@ -32,14 +31,6 @@ public class BubbleMovement : MonoBehaviour
         if (!isMoving) return;
         moveDirection = new Vector3(moveDirection.x * -1f, moveDirection.y);
     }
-
-    //public void StartFall()
-    //{
-    //    print("FALLING");
-    //    moveDirection = Vector3.down;
-    //    isMoving = true;
-    //    FallStarted?.Invoke();
-    //}
 
     private void FixedUpdate()
     {
