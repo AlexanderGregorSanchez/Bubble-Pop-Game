@@ -10,6 +10,7 @@ public class RoundHandler : MonoBehaviour
 
     [SerializeField] private List<GameObject> roundsList = new List<GameObject>();
 
+    public UnityEvent OnTransitionInitialized;
     public UnityEvent OnTransitionComplete;
     public UnityEvent OnAllRoundsComplete;
 
@@ -36,6 +37,8 @@ public class RoundHandler : MonoBehaviour
 
     IEnumerator MoveToNextRound(int nextRoundIndex)
     {
+        OnTransitionInitialized?.Invoke();
+
         while (roundsList[nextRoundIndex].transform.position.y >= playPosition.y)
         {
             //print($"{roundsList[nextRoundIndex].name} Current Y: {roundsList[nextRoundIndex].transform.position.y} || Target: {playPosition.y}");
@@ -44,6 +47,7 @@ public class RoundHandler : MonoBehaviour
             transform.position += Vector3.down * nextRoundTransitionSpeed * Time.fixedDeltaTime;
         }
 
+        OnTransitionComplete?.Invoke();
         roundCount++;
     }
 }

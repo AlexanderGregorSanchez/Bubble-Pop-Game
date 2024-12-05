@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: caa97e2d7d9a5714685bcaa02038f8af
+guid: 1b0486ce794c1f14cb4017e7bedb68e1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,76 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BubblePop Bubbles (Fastener)_0
+      name: BubblePop Bubbles (Fasteners)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 68
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 766a63d7c836649458e9a3d450e3f07b
+      internalID: -887124365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubblePop Bubbles (Fasteners)_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 68
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ddb9d5fed9440940815dfe8e77b3a51
+      internalID: -143320529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubblePop Bubbles (Fasteners)_2
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 68
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 683ab4b43f2d6db439bf26cb92582bd2
+      internalID: 1844847019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubblePop Bubbles (Fasteners)_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 68
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc5cff456eaf794cb74d2d53829ceee
-      internalID: 1871940284
+      spriteID: 1389459c9831c0b49889257b71bded9e
+      internalID: -1234480354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BubblePop Bubbles (Fastener)_1
+      name: BubblePop Bubbles (Fasteners)_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 68
         y: 0
-        width: 64
-        height: 64
+        width: 68
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56b667f6ac40fed4e9b04b72d335e68d
-      internalID: -1867422464
+      spriteID: 5bdefb39e4aa39f4da8747ecb9e45cc6
+      internalID: 689478877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BubblePop Bubbles (Fastener)_2
+      name: BubblePop Bubbles (Fasteners)_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 136
         y: 0
-        width: 64
-        height: 64
+        width: 68
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,71 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65d98c49aed9e0943b2856d2f8d6a1e5
-      internalID: 1496857508
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BubblePop Bubbles (Fastener)_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9395325e942239646bd841a743f42d71
-      internalID: -1344141514
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BubblePop Bubbles (Fastener)_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ed3baf45ada5f24f9073a872f91a9ed
-      internalID: 367303097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BubblePop Bubbles (Fastener)_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb40a60880906b946941f5eca3664f04
-      internalID: 463836538
+      spriteID: 90765f8c401c7704e85c4b211ee04d05
+      internalID: 35765494
       vertices: []
       indices: 
       edges: []
@@ -253,12 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BubblePop Bubbles (Fastener)_5: 463836538
-      BubblePop Bubbles (Fastener)_4: 367303097
-      BubblePop Bubbles (Fastener)_3: -1344141514
-      BubblePop Bubbles (Fastener)_2: 1496857508
-      BubblePop Bubbles (Fastener)_1: -1867422464
-      BubblePop Bubbles (Fastener)_0: 1871940284
+      BubblePop Bubbles (Fasteners)_2: 1844847019
+      BubblePop Bubbles (Fasteners)_3: -1234480354
+      BubblePop Bubbles (Fasteners)_4: 689478877
+      BubblePop Bubbles (Fasteners)_0: -887124365
+      BubblePop Bubbles (Fasteners)_1: -143320529
+      BubblePop Bubbles (Fasteners)_5: 35765494
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
