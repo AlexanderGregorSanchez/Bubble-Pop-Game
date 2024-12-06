@@ -5,13 +5,29 @@ using UnityEngine.Events;
 
 public class BubbleMovement : MonoBehaviour
 {
-    public float speed = 40f;
+    public float baseSpeed = 40f;
+    private float adjustedSpeed;
+
     private Vector3 moveDirection;
+
+    private RectTransform topLeftCorner;
+    private RectTransform bottomRightCorner;
 
     public bool isMoving;
 
     public UnityEvent MovementStarted;
     public UnityEvent MovementStopped;
+
+    private void Start()
+    {
+        CalculateAdjustedSpeed();
+    }
+
+    public void SetReferences(RectTransform topLeftRef, RectTransform botRightRef)
+    {
+        topLeftCorner = topLeftRef;
+        bottomRightCorner = botRightRef;
+    }
 
     public void StartMovement(Vector3 launchDirection)
     {
@@ -19,6 +35,7 @@ public class BubbleMovement : MonoBehaviour
         isMoving = true;
         MovementStarted?.Invoke();
     }
+
     public void StopMovement()
     {
         moveDirection = Vector3.zero;
@@ -34,6 +51,13 @@ public class BubbleMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(moveDirection * speed * Time.fixedDeltaTime);
+        transform.Translate(moveDirection * adjustedSpeed * Time.fixedDeltaTime);
+    }
+
+    private void CalculateAdjustedSpeed()
+    {
+        float canvasDiagonal = Vector2.Distance(topLeftCorner.position, bottomRightCorner.position);
+
+        adjustedSpeed = baseSpeed * canvasDiagonal / 200f;
     }
 }

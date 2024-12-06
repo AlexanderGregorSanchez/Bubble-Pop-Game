@@ -13,12 +13,19 @@ public class ShotSpawnHandler : MonoBehaviour
 
     public UnityEvent OnShotSpawned;
 
+    public RectTransform topLeftCorner;
+    public RectTransform bottomRightCorner;
+
     public void SpawnShot()
     {
         GameObject spawnedShot = Instantiate(bubblePopGameMgr.GetCurrentBubblePrefab(), launchPoint.transform.position, Quaternion.identity, transform.parent.transform);
         spawnedShot.transform.localScale = Vector3.one;
 
-        spawnedShot.GetComponent<BubbleMovement>().StartMovement(launchPoint.transform.up);
+        BubbleMovement shotMovement = spawnedShot.GetComponent<BubbleMovement>();
+        shotMovement.enabled = true;
+        shotMovement.SetReferences(topLeftCorner, bottomRightCorner);
+        shotMovement.StartMovement(launchPoint.transform.up);
+
         spawnedShot.GetComponent<ColoredBubble>().isBubbleShot = true;
         
         spawnedShot.transform.SetParent(shotParent);
