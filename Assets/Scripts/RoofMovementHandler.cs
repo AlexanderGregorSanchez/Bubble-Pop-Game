@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class RoofMovementHandler : MonoBehaviour
@@ -11,9 +12,15 @@ public class RoofMovementHandler : MonoBehaviour
     public float dropInterval = 10.0f;
 
     [Header("")]
-    [Tooltip("Per Interval")]
-    public float dropDistance = 25.0f;
-    public float dropSpeed = 50.0f;
+    public RectTransform floor;
+    [SerializeField][ReadOnly] 
+    private float totalDropDistance = 0f;
+    [Tooltip("The % amount of Total Drop Distance to move per drop")]
+    public float dropPercent = 0.15f;
+    [SerializeField][ReadOnly][Tooltip("Raw drop distance value")] 
+    private float dropDistance = 0f;
+    [Tooltip("Total animation duration in seconds")] 
+    public float dropDuration = 1.0f;
 
     private Vector2 targetDropPos;
 
@@ -24,6 +31,9 @@ public class RoofMovementHandler : MonoBehaviour
 
     private void Start()
     {
+        totalDropDistance = Mathf.Abs(initRoofPos.y - floor.position.y);
+        dropDistance = totalDropDistance * dropPercent;
+
         StartRoofDrop();
     }
 
@@ -57,13 +67,16 @@ public class RoofMovementHandler : MonoBehaviour
 
     IEnumerator MoveRoof(Vector3 targetPos)
     {
-        while (transform.position.y > targetDropPos.y)
-        {
+        float elapsedTime = 0f; 
+        Vector3 moveStartingPos = transform.position; 
+        float dropInstanceDistance = Vector3.Distance(moveStartingPos, targetPos);
+        float requiredSpeed = dropInstanceDistance / dropDuration; 
+
+        while (elapsedTime < dropDuration) 
+        { 
             yield return new WaitForFixedUpdate();
-
-            Vector3 newPos = transform.position - targetPos;
-
-            transform.Translate(Vector3.down * dropSpeed * Time.fixedDeltaTime);
+            transform.position = Vector3.MoveTowards(moveStartingPos, targetPos, requiredSpeed * (elapsedTime / dropDuration)); 
+            elapsedTime += Time.fixedDeltaTime; 
         }
 
         transform.position = targetPos;

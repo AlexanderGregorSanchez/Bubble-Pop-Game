@@ -912,7 +912,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &485308626
 RectTransform:
@@ -2419,8 +2419,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDropDelay: 20
   dropInterval: 10
-  dropDistance: 25
-  dropSpeed: 50
+  floor: {fileID: 485308626}
+  totalDropDistance: 0
+  dropPercent: 0.15
+  dropDistance: 0
+  dropDuration: 1
 --- !u!114 &1028689143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3037,8 +3040,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.3355548, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8.979431, y: 0}
+  m_SizeDelta: {x: -17.9589, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1328644922
 MonoBehaviour:
@@ -3138,7 +3141,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -887124365, guid: 1b0486ce794c1f14cb4017e7bedb68e1, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3172,7 +3175,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1342127727
 RectTransform:
@@ -3875,7 +3878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.33555818, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8.5, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1628127648
@@ -4887,7 +4890,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 689478877, guid: 1b0486ce794c1f14cb4017e7bedb68e1, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -5489,8 +5492,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDropDelay: 20
   dropInterval: 10
-  dropDistance: 25
-  dropSpeed: 50
+  floor: {fileID: 485308626}
+  totalDropDistance: 0
+  dropPercent: 0.15
+  dropDistance: 0
+  dropDuration: 1
 --- !u!114 &6844518921548570963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5813,8 +5819,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDropDelay: 20
   dropInterval: 10
-  dropDistance: 25
-  dropSpeed: 50
+  floor: {fileID: 485308626}
+  totalDropDistance: 0
+  dropPercent: 0.15
+  dropDistance: 0
+  dropDuration: 1
 --- !u!1 &6844518921783800502
 GameObject:
   m_ObjectHideFlags: 0
