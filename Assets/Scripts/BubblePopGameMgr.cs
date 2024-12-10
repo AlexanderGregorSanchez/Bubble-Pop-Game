@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,11 +16,21 @@ public enum BubbleColors
     Purple,
     Teal
 }
+
 public class BubblePopGameMgr : MonoBehaviour
 {
-    [SerializeField] private SerializedDictionary<BubbleColors, GameObject> bubblePrefabs;
+    [Serializable]
+    public struct BubblePrefab
+    {
+        public BubbleColors bubblePrefabColor;
+        public GameObject bubblePrefab;
+    }
+
+    public List<BubblePrefab> bubblePrefabList = new List<BubblePrefab>();
+    private Dictionary<BubbleColors, GameObject> bubblePrefabs = new Dictionary<BubbleColors, GameObject>();
     private List<GameObject> activeBubbles = new List<GameObject>();
     private List<BubbleColors> activeColors = new List<BubbleColors>();
+
 
     public List<GameObject> possibleBubblePrefabs = new List<GameObject>();
     public int currentBubbleIndex = 0;
@@ -44,6 +55,14 @@ public class BubblePopGameMgr : MonoBehaviour
         ColoredBubble.OnBubbleSpawned -= OnBubbleSpawn;
         ColoredBubble.OnBubblePopped -= OnBubblePopped;
         ColoredBubble.OnBubblePopped -= UpdateScore;
+    }
+
+    private void Awake()
+    {
+        foreach (BubblePrefab prefab in bubblePrefabList)
+        {
+            bubblePrefabs.Add(prefab.bubblePrefabColor, prefab.bubblePrefab);
+        }
     }
 
     private void OnBubbleSpawn(GameObject obj)
@@ -153,7 +172,7 @@ public class BubblePopGameMgr : MonoBehaviour
 
     private int GetRandomPossibleBubblePrefabsIndex()
     {
-        return Random.Range(0, possibleBubblePrefabs.Count);
+        return UnityEngine.Random.Range(0, possibleBubblePrefabs.Count);
     }
 
     public void AdvanceBubbleIndex(bool status)
