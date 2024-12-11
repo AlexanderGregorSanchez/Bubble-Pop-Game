@@ -187,7 +187,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 8745058994944341802}
   - component: {fileID: 463261787462320573}
   - component: {fileID: 3847953723331450843}
+  - component: {fileID: -7089012790870307417}
   m_Layer: 8
   m_Name: Bubble Base
   m_TagString: Bubble
@@ -309,6 +310,21 @@ MonoBehaviour:
   isBubbleShot: 0
   colorGroup: []
   minGroupSize: 3
+  OnBubbleDrop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7089012790870307417}
+        m_TargetAssemblyTypeName: SpriteParticlesHandler, Assembly-CSharp
+        m_MethodName: SpawnParticle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8589298756657335916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,6 +501,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-7089012790870307417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906137117856533334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003d17a3d9370224ba15936e0d697f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystemPrefab: {fileID: 513298398512802669, guid: a43d2c4202ad4d542b9fb5df52d58383, type: 3}
 --- !u!1 &4530928387619195642
 GameObject:
   m_ObjectHideFlags: 0

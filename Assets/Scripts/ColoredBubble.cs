@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class ColoredBubble : MonoBehaviour
 {
@@ -19,7 +21,10 @@ public class ColoredBubble : MonoBehaviour
     public List<GameObject> colorGroup = new List<GameObject>();
     [SerializeField] private int minGroupSize = 3;
 
-    public bool isDropped { get; private set; }
+    public UnityEvent<Sprite> OnBubbleDrop;
+    
+    public bool isDropped { get; private set; } = false;
+    public bool isBurst { get; private set; } = false;
 
     private void Start()
     {
@@ -111,13 +116,19 @@ public class ColoredBubble : MonoBehaviour
     {
         foreach (GameObject members in colorGroup)
         {
-            members.GetComponent<ColoredBubble>().DestroyBubble();
+            ColoredBubble cb = members.GetComponent<ColoredBubble>();
+            cb.isBurst = true;
+            cb.DestroyBubble();
         }
     }
 
     public void DropBubble()
     {
+        if (isBurst) { return; }
         isDropped = true;
+        print(gameObject.name);
+        OnBubbleDrop?.Invoke(GetComponentInChildren<Image>().sprite);
+
         DestroyBubble();
     }
 }
