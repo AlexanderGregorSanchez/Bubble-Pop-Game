@@ -11,12 +11,9 @@ public class RoofMovementHandler : MonoBehaviour
     public float initialDropDelay = 20.0f;
     public float dropInterval = 10.0f;
 
-    [Header("")]
-    public RectTransform floor;
-    [SerializeField][ReadOnly] 
-    private float totalDropDistance = 0f;
-    [Tooltip("The % amount of Total Drop Distance to move per drop")]
-    public float dropPercent = 0.15f;
+    [Header("Drop Data")]
+    public RectTransform topRefPoint;
+    public RectTransform dropRefPoint;
     [SerializeField][ReadOnly][Tooltip("Raw drop distance value")] 
     private float dropDistance = 0f;
     [Tooltip("Total animation duration in seconds")] 
@@ -28,12 +25,13 @@ public class RoofMovementHandler : MonoBehaviour
     {
         initRoofPos = transform.position;
     }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 
     private void Start()
     {
-        totalDropDistance = Mathf.Abs(initRoofPos.y - floor.position.y);
-        dropDistance = totalDropDistance * dropPercent;
-
         StartRoofDrop();
     }
 
@@ -58,6 +56,7 @@ public class RoofMovementHandler : MonoBehaviour
         yield return new WaitForSeconds(initialDropDelay);
         while (true)
         {
+            dropDistance = topRefPoint.position.y - dropRefPoint.position.y;
             targetDropPos = new Vector3(transform.position.x, transform.position.y - dropDistance, transform.position.z);
 
             StartCoroutine(MoveRoof(targetDropPos));

@@ -161,6 +161,7 @@ RectTransform:
   - {fileID: 849125035}
   - {fileID: 1554416062}
   - {fileID: 604239110}
+  - {fileID: 1382217670}
   m_Father: {fileID: 1628127647}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1623,7 +1624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604239110}
   m_Layer: 5
-  m_Name: Drop Distiance Reference
+  m_Name: Drop Distiance Reference A
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1636,18 +1637,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604239109}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 61596507}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 260.08228}
-  m_SizeDelta: {x: 1, y: -614.6091}
+  m_AnchorMin: {x: 0.4990692, y: 0.9617103}
+  m_AnchorMax: {x: 0.5009505, y: 0.96290886}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &648630729
 GameObject:
@@ -3129,9 +3130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDropDelay: 20
   dropInterval: 10
-  floor: {fileID: 485308626}
-  totalDropDistance: 0
-  dropPercent: 0.15
+  topRefPoint: {fileID: 604239110}
+  dropRefPoint: {fileID: 1382217670}
   dropDistance: 0
   dropDuration: 1
 --- !u!222 &1028689144
@@ -4010,6 +4010,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342127726}
   m_CullTransparentMesh: 1
+--- !u!1 &1382217669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1382217670}
+  m_Layer: 5
+  m_Name: Drop Distiance Reference B
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1382217670
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382217669}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4999999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 61596507}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.4990692, y: 0.9217637}
+  m_AnchorMax: {x: 0.5009505, y: 0.92233306}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1399701838 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3232799432627715500, guid: 761636a56049a364e9a88077ba5d9a8d, type: 3}
@@ -5233,6 +5269,14 @@ PrefabInstance:
     - target: {fileID: 3232799432627715507, guid: 2d86f0dd39025a145a0e10938fdadf86, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232799432890389225, guid: 2d86f0dd39025a145a0e10938fdadf86, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232799432890389225, guid: 2d86f0dd39025a145a0e10938fdadf86, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d86f0dd39025a145a0e10938fdadf86, type: 3}
@@ -6791,9 +6835,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDropDelay: 20
   dropInterval: 10
-  floor: {fileID: 485308626}
-  totalDropDistance: 0
-  dropPercent: 0.15
+  topRefPoint: {fileID: 604239110}
+  dropRefPoint: {fileID: 1382217670}
   dropDistance: 0
   dropDuration: 1
 --- !u!1 &6844518921548570967
@@ -7056,9 +7099,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDropDelay: 20
   dropInterval: 10
-  floor: {fileID: 485308626}
-  totalDropDistance: 0
-  dropPercent: 0.15
+  topRefPoint: {fileID: 604239110}
+  dropRefPoint: {fileID: 1382217670}
   dropDistance: 0
   dropDuration: 1
 --- !u!1 &6844518921783800502

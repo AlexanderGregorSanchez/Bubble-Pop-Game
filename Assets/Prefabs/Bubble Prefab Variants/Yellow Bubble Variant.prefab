@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: bubbleColor
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3906137117047219212, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3906137117047219215, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
       propertyPath: m_Sprite
       value: 
