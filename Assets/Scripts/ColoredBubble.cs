@@ -34,7 +34,6 @@ public class ColoredBubble : MonoBehaviour
     private void DestroyBubble()
     {
         OnBubblePopped?.Invoke(gameObject);
-        //print($"<color=green>{name}</color> has been <color=red>DESTROYED</color>");
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
@@ -66,7 +65,7 @@ public class ColoredBubble : MonoBehaviour
             }
             else
             {
-                print("Something fucked up and neighbor passed by all checks in: ColoredBubble -> SortNeighbors() in " + name + " GameObject");
+                Debug.LogWarning($"Categorizing neighbors failed: neighbor passed by all checks in: ColoredBubble.cs -> SortNeighbors() in {name} GameObject");
             }
         }
 
@@ -80,18 +79,12 @@ public class ColoredBubble : MonoBehaviour
 
     public void FindBubbleGroup()
     {
-        // Ensure the colorGroup is cleared before starting the process
         colorGroup.Clear();
         AddToColorGroup(this);
 
         if (colorGroup.Count >= minGroupSize)
         {
-            //print("Group meets the minimum size requirement!");
             BurstBubbleGroup();
-        }
-        else
-        {
-            //print("Group does not meet the minimum size requirement.");
         }
     }
 
@@ -128,7 +121,6 @@ public class ColoredBubble : MonoBehaviour
     {
         if (isBurst) { return; }
         isDropped = true;
-        print(gameObject.name);
         OnBubbleDrop?.Invoke(GetComponentInChildren<Image>().sprite);
 
         DestroyBubble();
