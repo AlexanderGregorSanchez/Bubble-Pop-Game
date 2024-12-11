@@ -22,7 +22,7 @@ public class ColoredBubble : MonoBehaviour
     [SerializeField] private int minGroupSize = 3;
 
     public UnityEvent<Sprite> OnBubbleDrop;
-    
+
     public bool isDropped { get; private set; } = false;
     public bool isBurst { get; private set; } = false;
 
@@ -77,7 +77,7 @@ public class ColoredBubble : MonoBehaviour
             FindBubbleGroup();
         }
     }
-    
+
     public void FindBubbleGroup()
     {
         // Ensure the colorGroup is cleared before starting the process
@@ -116,9 +116,11 @@ public class ColoredBubble : MonoBehaviour
     {
         foreach (GameObject members in colorGroup)
         {
-            ColoredBubble cb = members.GetComponent<ColoredBubble>();
-            cb.isBurst = true;
-            cb.DestroyBubble();
+            members.GetComponent<ColoredBubble>().isBurst = true;
+        }
+        foreach (GameObject members in colorGroup)
+        {
+            members.GetComponent<ColoredBubble>().DestroyBubble();
         }
     }
 
