@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drop Bubble Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3906137117856533334, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3906137117856533320, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
     - {fileID: -1682880222190944448, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
@@ -117,3 +121,37 @@ PrefabInstance:
     - {fileID: 463261787462320573, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
     - {fileID: -7089012790870307417, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
+--- !u!1 &7760705143410822821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3906137117856533334, guid: 3e606f242d72e5845b6fc324f30303f1, type: 3}
+  m_PrefabInstance: {fileID: 6739341309523396083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-2174946945720528564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7760705143410822821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115c68bc4ff7bdc4fbf2941ab4835eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beginOnStart: 1
+  timerSeconds: 5
+  OnTimerComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7760705143410822821}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
