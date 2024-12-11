@@ -187,7 +187,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003d17a3d9370224ba15936e0d697f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystemPrefab: {fileID: 513298398512802669, guid: a43d2c4202ad4d542b9fb5df52d58383, type: 3}
+  dropPrefab: {fileID: 7760705143410822821, guid: 3a65eae6022c7da439f57366055a0626, type: 3}
 --- !u!1 &4530928387619195642
 GameObject:
   m_ObjectHideFlags: 0
