@@ -23,13 +23,15 @@ public class BubblePreviewHandler : MonoBehaviour
         if (currentBubbleImage == null) return;
 
         Color color = bubblePopGameMgr.GetCurrentBubbleColor();
-        currentBubbleImage.color = (color == Color.clear) ? color : new Color(color.r, color.g, color.b, alpha); 
+        currentBubbleImage.color = (color == Color.clear) ? color : new Color(color.r, color.g, color.b, alpha);
+        currentBubbleImage.sprite = bubblePopGameMgr.GetCurrentBubbleSprite();
     }
     private void UpdateNextBubbleImage() 
     { 
         if (nextBubbleImage == null) return;
 
         nextBubbleImage.color = bubblePopGameMgr.GetNextBubbleColor(); 
+        nextBubbleImage.sprite = bubblePopGameMgr.GetNextBubbleSprite();
     }
 
     public void SetPreviewVisibility(bool visible)

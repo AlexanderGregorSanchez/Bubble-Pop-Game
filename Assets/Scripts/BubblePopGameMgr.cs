@@ -214,6 +214,23 @@ public class BubblePopGameMgr : MonoBehaviour
 
         return Color.clear;
     }
+    public Sprite GetCurrentBubbleSprite()
+    {
+        if (possibleBubblePrefabs.Count > 0)
+        {
+            return possibleBubblePrefabs[currentBubbleIndex].GetComponentInChildren<Image>().sprite;
+        }
+        return null;
+    }
+    public Sprite GetNextBubbleSprite()
+    {
+        if (possibleBubblePrefabs.Count > 0)
+        {
+            return possibleBubblePrefabs[nextBubbleIndex].GetComponentInChildren<Image>().sprite;
+        }
+        return null;
+    }
+
     public GameObject GetCurrentBubblePrefab()
     {
         return possibleBubblePrefabs[currentBubbleIndex];

@@ -15,7 +15,11 @@ public class DroppedBubbleHandler : MonoBehaviour
 
         Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
 
-        rb.velocity = Vector2.up * 30;
-        rb.angularVelocity = 500;
+        float randomHorizontalSpeed = Random.Range(-30f, 30f);
+        rb.velocity = new Vector2(randomHorizontalSpeed, 30);
+
+        float randomAngularSpeed = Random.Range(-500f, 500f);
+        rb.angularVelocity = randomAngularSpeed;
+
     }
 }
