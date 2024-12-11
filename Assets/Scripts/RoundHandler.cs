@@ -22,6 +22,7 @@ public class RoundHandler : MonoBehaviour
     {
         targetPlayPositionY = playPosition.position.y;
     }
+
     public void GoToNextRound()
     {
         if (roundCount <= roundsList.Count)
@@ -39,14 +40,15 @@ public class RoundHandler : MonoBehaviour
     IEnumerator MoveToNextRound(int nextRoundIndex)
     {
         OnTransitionInitialized?.Invoke();
-
+        
         while (roundsList[nextRoundIndex].transform.position.y > targetPlayPositionY)
         {
-            //print($"{roundsList[nextRoundIndex].name} Current Y: {roundsList[nextRoundIndex].transform.position.y} || Target: {playPosition.y}");
             yield return new WaitForFixedUpdate();
 
             transform.position += Vector3.down * nextRoundTransitionSpeed * Time.fixedDeltaTime;
         }
+
+        transform.position += new Vector3(0, targetPlayPositionY - roundsList[nextRoundIndex].transform.position.y, 0);
 
         OnTransitionComplete?.Invoke();
         roundCount++;
