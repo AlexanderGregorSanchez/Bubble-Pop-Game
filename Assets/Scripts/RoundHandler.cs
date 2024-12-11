@@ -14,12 +14,13 @@ public class RoundHandler : MonoBehaviour
     public UnityEvent OnTransitionComplete;
     public UnityEvent OnAllRoundsComplete;
 
-    private Vector3 playPosition;
+    public RectTransform playPosition;
+    private float targetPlayPositionY;
     private int roundCount = 1;
 
     private void Awake()
     {
-        playPosition = roundsList[0].GetComponent<RectTransform>().position;
+        targetPlayPositionY = playPosition.position.y;
     }
     public void GoToNextRound()
     {
@@ -39,7 +40,7 @@ public class RoundHandler : MonoBehaviour
     {
         OnTransitionInitialized?.Invoke();
 
-        while (roundsList[nextRoundIndex].transform.position.y >= playPosition.y)
+        while (roundsList[nextRoundIndex].transform.position.y > targetPlayPositionY)
         {
             //print($"{roundsList[nextRoundIndex].name} Current Y: {roundsList[nextRoundIndex].transform.position.y} || Target: {playPosition.y}");
             yield return new WaitForFixedUpdate();
