@@ -23,6 +23,8 @@ public class ColoredBubble : MonoBehaviour
 
     public UnityEvent<Sprite> OnBubbleDrop;
 
+    public RectTransform bubbleParent { get; set; }
+
     public bool isDropped { get; private set; } = false;
     public bool isBurst { get; private set; } = false;
 
@@ -124,5 +126,10 @@ public class ColoredBubble : MonoBehaviour
         OnBubbleDrop?.Invoke(GetComponentInChildren<Image>().sprite);
 
         DestroyBubble();
+    }
+
+    public void SetBubbleParentPanel()
+    {
+        transform.SetParent(bubbleParent);
     }
 }

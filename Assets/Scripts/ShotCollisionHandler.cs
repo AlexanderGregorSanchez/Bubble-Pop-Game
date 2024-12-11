@@ -20,10 +20,12 @@ public class ShotCollisionHandler : MonoBehaviour
             if (collision.gameObject.CompareTag("Roof"))
             {
                 OnRoofHit?.Invoke();
+                this.enabled = false;
             }
             if (collision.gameObject.CompareTag("Bubble"))
             {
                 OnBubbleHit?.Invoke();
+                this.enabled = false;
             }
         }
     }
