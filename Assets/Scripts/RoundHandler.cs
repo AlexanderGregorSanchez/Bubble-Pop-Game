@@ -18,6 +18,8 @@ public class RoundHandler : MonoBehaviour
     private float targetPlayPositionY;
     private int roundCount = 1;
 
+    public string bubblePanelNameToFind = "Bubble Panel";
+
     private void Awake()
     {
         targetPlayPositionY = playPosition.position.y;
@@ -27,7 +29,7 @@ public class RoundHandler : MonoBehaviour
     {
         if (roundCount <= roundsList.Count)
         {
-            roundsList[roundCount].transform.GetChild(1).gameObject.SetActive(true);
+            roundsList[roundCount].transform.Find(bubblePanelNameToFind).gameObject.SetActive(true);
             StopAllCoroutines();
             StartCoroutine(MoveToNextRound(roundCount));
         }

@@ -7,12 +7,13 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class RoofCheckHandler : MonoBehaviour
 {
+    public string roofTag = "Roof";
     public RectTransform endPoint;
 
     public bool isTouchingRoof = false;
     public bool isConnectedToRoof = false;
 
-    public List<GameObject> bubblesVisited = new List<GameObject>();
+    private List<GameObject> bubblesVisited = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -30,7 +31,7 @@ public class RoofCheckHandler : MonoBehaviour
         //print($"<b><color=green>{name}'s</color></b> roof check found {hits.Length} hits");
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.transform.CompareTag("Roof"))
+            if (hit.transform.CompareTag(roofTag))
             {
                 //print($"<b><color=green>{name}</color></b> is touching the roof");
                 Debug.DrawLine(transform.position, hit.point, Color.yellow, 500);

@@ -140,7 +140,7 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.529}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6844518923106761778
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -193,8 +193,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDropDelay: 20
   dropInterval: 10
+  topRefPoint: {fileID: 0}
+  dropRefPoint: {fileID: 0}
   dropDistance: 25
-  dropSpeed: 50
+  dropDuration: 1
 --- !u!114 &5401952066919339061
 MonoBehaviour:
   m_ObjectHideFlags: 0

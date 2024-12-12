@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fcae43497b9e64bbecc35f6304a940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roofTag: Roof
   endPoint: {fileID: 6658340546091278305}
   isTouchingRoof: 0
   isConnectedToRoof: 0
@@ -353,7 +354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37495aea0b756de42a01dc21c42693ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionalEndPoint:
+  bubbleTag: Bubble
+  directionalEndPoints:
   - {fileID: 2183687551046060330}
   - {fileID: 7677785774625554265}
   - {fileID: 6083325437744844066}
@@ -538,6 +540,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 7760705143410822821, guid: 3a65eae6022c7da439f57366055a0626, type: 3}
+  horizontalLaunchImpulse: 30
+  verticalLaunchImpulse: 30
+  maxAngularSpeed: 500
+  minAngularSpeed: 100
 --- !u!1 &4530928387619195642
 GameObject:
   m_ObjectHideFlags: 0

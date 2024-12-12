@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class FindNeighbor : MonoBehaviour
 {
-    public List<RectTransform> directionalEndPoint = new List<RectTransform>();
+    public string bubbleTag = "Bubble";
+    public List<RectTransform> directionalEndPoints = new List<RectTransform>();
     private List<GameObject> immediateNeighbors = new List<GameObject>();
 
     public UnityEvent<List<GameObject>> OnAllNeighborsFound;
@@ -28,7 +29,7 @@ public class FindNeighbor : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            foreach (var entry in directionalEndPoint)
+            foreach (RectTransform entry in directionalEndPoints)
             {
                 RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, entry.position);
                 //Debug.DrawLine(transform.position, entry.position, Color.yellow, 500);
@@ -36,7 +37,7 @@ public class FindNeighbor : MonoBehaviour
                 foreach (RaycastHit2D hit in hits)
                 {
                     if (hit.transform.gameObject != gameObject
-                        && hit.transform.CompareTag("Bubble")
+                        && hit.transform.CompareTag(bubbleTag)
                         && !immediateNeighbors.Contains(hit.transform.gameObject))
                     {
                         GameObject neighbor = hit.transform.gameObject;
