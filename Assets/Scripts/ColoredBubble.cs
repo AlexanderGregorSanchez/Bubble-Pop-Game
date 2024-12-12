@@ -21,7 +21,7 @@ public class ColoredBubble : MonoBehaviour
     public List<GameObject> colorGroup = new List<GameObject>();
     [SerializeField] private int minGroupSize = 3;
 
-    public UnityEvent<Sprite> OnBubbleDrop;
+    public UnityEvent<GameObject> OnBubbleDrop;
 
     public RectTransform bubbleParent { get; set; }
 
@@ -123,7 +123,7 @@ public class ColoredBubble : MonoBehaviour
     {
         if (isBurst) { return; }
         isDropped = true;
-        OnBubbleDrop?.Invoke(GetComponentInChildren<Image>().sprite);
+        OnBubbleDrop?.Invoke(gameObject);
 
         DestroyBubble();
     }
