@@ -65,10 +65,6 @@ public class ColoredBubble : MonoBehaviour
             {
                 nonMatchingNeighbors.Add(neighbor);
             }
-            else
-            {
-                Debug.LogWarning($"Categorizing neighbors failed: neighbor passed by all checks in: ColoredBubble.cs -> SortNeighbors() in {name} GameObject");
-            }
         }
 
 

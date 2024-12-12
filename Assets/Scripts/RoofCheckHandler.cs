@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
+// This script handles checking if bubbles are connected to the roof and updating their state accordingly
 public class RoofCheckHandler : MonoBehaviour
 {
     public string roofTag = "Roof";
@@ -23,25 +21,22 @@ public class RoofCheckHandler : MonoBehaviour
     {
         ColoredBubble.OnBubblePopped -= NeighborPop;
     }
-
+    // Check if this bubble is immediately touching the roof
     public void CheckForImmediateRoof()
     {
         RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, endPoint.position);
-        //Debug.DrawLine(transform.position, transform.position + Vector3.up * 10, Color.yellow, 500);
-        //print($"<b><color=green>{name}'s</color></b> roof check found {hits.Length} hits");
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.transform.CompareTag(roofTag))
             {
-                //print($"<b><color=green>{name}</color></b> is touching the roof");
-                Debug.DrawLine(transform.position, hit.point, Color.yellow, 500);
+                Debug.DrawLine(transform.position, hit.point, Color.yellow, 20);
                 isTouchingRoof = true;
                 isConnectedToRoof = true;
                 break;
             }
         }
     }
-
+    // Update records and check if this bubble is still connected to the roof when a neighbor is destroyed, either popped or dropped
     private void NeighborPop(GameObject neighbor)
     {
         List<GameObject> neighbors = new List<GameObject>(GetComponent<ColoredBubble>().allNeighbors);
@@ -52,34 +47,31 @@ public class RoofCheckHandler : MonoBehaviour
             FindRoof(GetComponent<ColoredBubble>().allNeighbors);
         }
     }
-
+    // Perform a depth-first search (DFS) to find if this bubble or its neighbors are touching the roof
     public void FindRoof(List<GameObject> neighbors)
     {
         if (isTouchingRoof) return;
 
         isConnectedToRoof = false;
 
-        // Ensure the roofGroup is cleared before starting the process
         bubblesVisited.Clear();
-        SearchNeighborsForRoof(this);
+        SearchNeighborsForRoof(this); // Start search
         
-        if (isConnectedToRoof)
+        if (isConnectedToRoof) // // Once the roof is found, reset everything for the next time a search is performed
         {
             isConnectedToRoof = false;
-            //print($"<b><color=green>{name}'s</color></b> is <color=yellow>CONNECTED</color> to Roof");
-            DoSomethingIfRoofFound();
         }
-        else
+        else // If no roof connection is found then trigger bubble drop
         {
             isConnectedToRoof = false;
-            //print($"<b><color=green>{name}'s</color></b> is <color=red>NOT CONNECTED</color> to Roof");
-            DoSomethingIfRoofNotFound();
+            GetComponent<ColoredBubble>().DropBubble();
 
             gameObject.SetActive(false);
         }
 
     }
 
+    // Recursively search through neighbors to check for connection to the roof
     public void SearchNeighborsForRoof(RoofCheckHandler origin)
     {
         if (!origin.GetComponent<RoofCheckHandler>().bubblesVisited.Contains(gameObject))
@@ -87,13 +79,14 @@ public class RoofCheckHandler : MonoBehaviour
             origin.GetComponent<RoofCheckHandler>().bubblesVisited.Add(gameObject);
         }
 
-        if (isTouchingRoof)
+        // Roof is found, ending search
+        if (isTouchingRoof) 
         {
-            //print($"<b><color=green>{name}'s</color></b> is <color=yellow>TOUCHING</color> to Roof");
             origin.isConnectedToRoof = true;
             return;
         }
 
+        // Roof is NOT found, so search if neighbors are touching the roof
         foreach (GameObject neighbor in GetComponent<ColoredBubble>().allNeighbors)
         {
             if (neighbor == null) continue;
@@ -106,17 +99,4 @@ public class RoofCheckHandler : MonoBehaviour
             }
         }
     }
-
-    public void DoSomethingIfRoofFound()
-    {
-        // Action to perform if the roof is found
-    }
-
-    public void DoSomethingIfRoofNotFound()
-    {
-        // Action to perform if the roof is not found
-
-        GetComponent<ColoredBubble>().DropBubble();
-    }
-
 }

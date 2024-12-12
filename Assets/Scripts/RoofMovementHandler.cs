@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
+// This script handles the movement of the roof and bubbles over time
 public class RoofMovementHandler : MonoBehaviour
 {
     private Vector3 initRoofPos;
@@ -51,6 +52,7 @@ public class RoofMovementHandler : MonoBehaviour
         StopAllCoroutines();
     }
 
+    // Timer that dictates when the roof starts dropping and the interval between
     IEnumerator DropRoofOverTime()
     {
         yield return new WaitForSeconds(initialDropDelay);
@@ -66,11 +68,13 @@ public class RoofMovementHandler : MonoBehaviour
 
     IEnumerator MoveRoof(Vector3 targetPos)
     {
+        // Move speed is variable based on the distance to move and the set time duration for the move
         float elapsedTime = 0f; 
         Vector3 moveStartingPos = transform.position; 
         float dropInstanceDistance = Vector3.Distance(moveStartingPos, targetPos);
         float requiredSpeed = dropInstanceDistance / dropDuration; 
 
+        // Moving roof
         while (elapsedTime < dropDuration) 
         { 
             yield return new WaitForFixedUpdate();
@@ -78,6 +82,6 @@ public class RoofMovementHandler : MonoBehaviour
             elapsedTime += Time.fixedDeltaTime; 
         }
 
-        transform.position = targetPos;
+        transform.position = targetPos; // Ensure the roof reaches the target position
     }
 }

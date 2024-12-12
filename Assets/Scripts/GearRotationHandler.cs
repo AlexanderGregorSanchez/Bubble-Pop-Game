@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
+// This script handles the rotation of the gears
 public class GearRotationHandler : MonoBehaviour
 {
     public UnityEvent OnRotationStart;
@@ -31,7 +32,6 @@ public class GearRotationHandler : MonoBehaviour
         while (speed != 0)
         {
             yield return new WaitForFixedUpdate();
-            //transform.Rotate(Vector3.forward, speed * Time.fixedDeltaTime,);
             transform.Rotate(0, 0, speed * Time.fixedDeltaTime, Space.World);
         }
     }
