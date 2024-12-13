@@ -44,3 +44,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Launcher
+    uniqueID: 3647017567
+    locked: 0
